@@ -1,0 +1,98 @@
+services:
+
+ app.actor.repository.doctrine:
+    class: ActorBundle\Infrastructure\Repository\ActorRepositoryDoctrine
+    public: true
+    arguments:
+      $entityManager: '@doctrine.orm.entity_manager'
+
+#UseCase
+ app.actor.usecase.newactorusecase:
+    class: ActorBundle\Application\UseCase\NewActorUseCase
+    public: true
+    arguments:
+      $actorRepository: '@app.actor.repository.doctrine'
+      $dispatcher: '@event_dispatcher'
+
+ app.actor.usecase.listactorusecase:
+    class: ActorBundle\Application\UseCase\ListActorUseCase
+    public: true
+    arguments:
+      $actorRepository: '@app.actor.repository.doctrine'
+      $dispatcher: '@event_dispatcher'
+
+ app.actor.usecase.deleteactorusecase:
+    class: ActorBundle\Application\UseCase\DeleteActorUseCase
+    public: true
+    arguments:
+      $actorRepository: '@app.actor.repository.doctrine'
+      $dispatcher: '@event_dispatcher'
+
+ app.actor.usecase.updateactorusecase:
+    class: ActorBundle\Application\UseCase\UpdatedActorUseCase
+    public: true
+    arguments:
+      $actorRepository: '@app.actor.repository.doctrine'
+      $dispatcher: '@event_dispatcher'
+
+
+#Command
+ app.command.actor.create:
+   class: ActorBundle\Application\Command\CreateActorCommand
+   arguments:
+      $newActorUseCase: '@app.actor.usecase.newactorusecase'
+   tags:
+    - { name: console.command }
+
+ app.command.actor.update:
+    class: ActorBundle\Application\Command\UpdateActorCommand
+    arguments:
+        $updatedActorUseCase: '@app.actor.usecase.updateactorusecase'
+    tags:
+      - { name: console.command }
+
+ app.command.actor.list:
+    class: ActorBundle\Application\Command\ListActorCommand
+    arguments:
+        $listActorUseCase: '@app.actor.usecase.listactorusecase'
+    tags:
+      - { name: console.command }
+
+ app.command.actor.delete:
+    class: ActorBundle\Application\Command\DeleteActorCommand
+    arguments:
+        $deleteActorUseCase: '@app.actor.usecase.deleteactorusecase'
+    tags:
+      - { name: console.command }
+
+#Controller
+ app.actor.controller.list:
+    class: ActorBundle\Infrastructure\Controller\ListActorController
+    public: true
+    arguments:
+      $listActorUseCase: '@app.actor.usecase.listactorusecase'
+
+#Api
+ app.actor.api.create:
+    class: ActorBundle\Infrastructure\Api\CreateActorController
+    public: true
+    arguments:
+      $newActorUseCase: '@app.actor.usecase.newactorusecase'
+
+ app.actor.api.list:
+    class: ActorBundle\Infrastructure\Api\ListActorController
+    public: true
+    arguments:
+      $listActorUseCase: '@app.actor.usecase.listactorusecase'
+
+ app.actor.api.update:
+    class: ActorBundle\Infrastructure\Api\UpdateActorController
+    public: true
+    arguments:
+      $updatedActorUseCase: '@app.actor.usecase.updateactorusecase'
+
+ app.actor.api.delete:
+    class: ActorBundle\Infrastructure\Api\DeleteActorController
+    public: true
+    arguments:
+      $deleteActorUseCase: '@app.actor.usecase.deleteactorusecase'

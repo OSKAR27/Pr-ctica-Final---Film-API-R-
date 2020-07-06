@@ -1,0 +1,6 @@
+actor:
+  resource: '@ActorBundle/Resource/config/route/routing.yml'
+  prefix: /
+film:
+  resource: '@FilmBundle/Resource/config/route/routing.yml'
+  prefix: /

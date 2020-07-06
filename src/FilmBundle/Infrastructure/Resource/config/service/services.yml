@@ -1,0 +1,90 @@
+services:
+
+  #Repository
+  app.film.repository.doctrine:
+      class: FilmBundle\Infrastructure\Repository\FilmRepositoryDoctrine
+      arguments:
+        $entityManager: '@doctrine.orm.entity_manager'
+
+  app.film.usecase.newfilmusecase:
+      class: FilmBundle\Application\UseCase\NewFilmUseCase
+      public: true
+      arguments:
+        $filmRepository: '@app.film.repository.doctrine'
+        $actorRepository: '@app.actor.repository.doctrine'
+        $dispatcher: '@event_dispatcher'
+
+  app.film.usecase.listfilmusecase:
+      class: FilmBundle\Application\UseCase\ListFilmUseCase
+      public: true
+      arguments:
+        $filmRepository: '@app.film.repository.doctrine'
+        $dispatcher: '@event_dispatcher'
+
+  app.film.usecase.deletefilmusecase:
+      class: FilmBundle\Application\UseCase\DeleteFilmUseCase
+      public: true
+      arguments:
+        $filmRepository: '@app.film.repository.doctrine'
+        $dispatcher: '@event_dispatcher'
+
+  app.film.usecase.updatefilmusecase:
+      class: FilmBundle\Application\UseCase\UpdatedFilmUseCase
+      public: true
+      arguments:
+        $filmRepository: '@app.film.repository.doctrine'
+        $actorRepository: '@app.actor.repository.doctrine'
+        $dispatcher: '@event_dispatcher'
+  #Api
+  app.film.api.create:
+    class: FilmBundle\Infrastructure\Api\CreateFilmController
+    public: true
+    arguments:
+      $newFilmUseCase: '@app.film.usecase.newfilmusecase'
+
+  app.film.api.list:
+    class: FilmBundle\Infrastructure\Api\ListFilmController
+    public: true
+    arguments:
+      $listFilmUseCase: '@app.film.usecase.listfilmusecase'
+
+  app.film.api.update:
+    class: FilmBundle\Infrastructure\Api\UpdateFilmController
+    public: true
+    arguments:
+      $updatedFilmUseCase: '@app.film.usecase.updatefilmusecase'
+
+  app.film.api.delete:
+    class: FilmBundle\Infrastructure\Api\DeleteFilmController
+    public: true
+    arguments:
+      $deleteFilmUseCase: '@app.film.usecase.deletefilmusecase'
+
+  #Command
+  app.command.film.create:
+    class: FilmBundle\Application\Command\CreateFilmCommand
+    arguments:
+        $newFilmUseCase: '@app.film.usecase.newfilmusecase'
+    tags:
+      - { name: console.command }
+
+  app.command.film.update:
+    class: FilmBundle\Application\Command\UpdateFilmCommand
+    arguments:
+        $updatedFilmUseCase: '@app.film.usecase.updatefilmusecase'
+    tags:
+      - { name: console.command }
+
+  app.command.film.list:
+    class: FilmBundle\Application\Command\ListFilmCommand
+    arguments:
+        $listFilmUseCase: '@app.film.usecase.listfilmusecase'
+    tags:
+      - { name: console.command }
+
+  #Controller
+    app.film.controller.list.views:
+      class: FilmBundle\Infrastructure\Controller\ListFilmController
+      public: true
+      arguments:
+        $listFilmUseCase: '@app.film.usecase.listfilmusecase'

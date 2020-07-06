@@ -1,0 +1,24 @@
+film_create:
+  path: /film/
+  defaults: { _controller: app.film.api.create:execute }
+  methods: [POST]
+
+film_controller_list:
+    path: /films/views/
+    defaults: { _controller: app.film.controller.list.views:execute }
+    methods: [GET]
+
+film_delete:
+  path: /film/
+  defaults: { _controller: app.film.api.delete:execute }
+  methods: [DELETE]
+
+film_update:
+  path: /film/
+  defaults: { _controller: app.film.api.update:execute }
+  methods: [PUT]
+
+film_list:
+  path: /film/
+  defaults: { _controller: app.film.api.list:execute }
+  methods: [GET]

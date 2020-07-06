@@ -1,0 +1,24 @@
+actor_create:
+    path: /actor/
+    defaults: { _controller: app.actor.api.create:execute }
+    methods: [POST]
+
+actor_list:
+    path: /actor/
+    defaults: { _controller: app.actor.api.list:execute }
+    methods: [GET]
+
+actor_update:
+    path: /actor/
+    defaults: { _controller: app.actor.api.update:execute }
+    methods: [PUT]
+
+actor_delete:
+    path: /actor/
+    defaults: { _controller: app.actor.api.delete:execute }
+    methods: [DELETE]
+
+actor_controller_list:
+    path: /actor/views/
+    defaults: { _controller: app.actor.controller.list:execute }
+    methods: [GET]

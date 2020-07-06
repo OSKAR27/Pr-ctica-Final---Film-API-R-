@@ -1,0 +1,11 @@
+ActorBundle\Domain\Entity\Actor:
+    type: entity
+    table: actor
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        name:
+            type: string
+            length: 100
