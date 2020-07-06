@@ -10,7 +10,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 class ListActorCommand extends Command
 {
     // the name of the command (the part after "bin/console")
-    protected static $defaultName = 'app:list-actor-command';
+    protected static $defaultName = 'app:list-actor';
     private $listActorUseCase;
 
     public function __construct(ListActorUseCase $listActorUseCase)

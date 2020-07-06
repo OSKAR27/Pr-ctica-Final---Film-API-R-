@@ -11,7 +11,7 @@ use Symfony\Component\Console\Input\InputArgument;
 class CreateActorCommand extends Command
 {
     // the name of the command (the part after "bin/console")
-    protected static $defaultName = 'app:create-actor-command';
+    protected static $defaultName = 'app:create-actor';
 
     private $newActorUseCase;
 

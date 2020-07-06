@@ -12,7 +12,7 @@ use Symfony\Component\Console\Input\InputArgument;
 class DeleteActorCommand extends Command
 {
     // the name of the command (the part after "bin/console")
-    protected static $defaultName = 'app:delete-actor-command';
+    protected static $defaultName = 'app:delete-actor';
     private $deleteActorUseCase;
 
     public function __construct(DeleteActorUseCase $deleteActorUseCase)

@@ -25,37 +25,37 @@ Actor
 
 - Create Actor Command:
 
-> php bin/console app:create-actor-command "Nombre Actor"
+> php bin/console app:create-actor "Nombre Actor"
 
 - Update Actor Command:
 
-> php bin/console app:update-actor-command "Id Actor" "Nombre Actor"
+> php bin/console app:update-actor "Id Actor" "Nombre Actor"
 
 - List Actor Command:
 
-> php bin/console app:list-actor-command
+> php bin/console app:list-actor
 
 - Delete Actor Command:
 
-> php bin/console app:delete-actor-command "Id Actor"
+> php bin/console app:delete-actor "Id Actor"
 
 Film
 
 - Create Film Command:
 
-> php bin/console app:create-film-command "Nombre Actor"
+> php bin/console app:create-film "Nombre Film" "Description" idactor
 
 - Update Film Command:
 
-> php bin/console app:update-film-command "Id Actor" "Nombre Actor"
+> php bin/console app:update-film "Id Film" "Nombre Film" "Description" idactor
 
 - List Film Command:
 
-> php bin/console app:list-film-command
+> php bin/console app:list-film
 
 - Delete Film Command:
 
-> php bin/console app:delete-film-command "Id Actor"
+> php bin/console app:delete-film "Id Film"
 
 
 #Hacer Uso de las APIS

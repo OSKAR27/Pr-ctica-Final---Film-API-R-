@@ -12,7 +12,7 @@ use Symfony\Component\Console\Input\InputArgument;
 class UpdateActorCommand extends Command
 {
     // the name of the command (the part after "bin/console")
-    protected static $defaultName = 'app:update-actor-command';
+    protected static $defaultName = 'app:update-actor';
     private $updatedActorUseCase;
 
     public function __construct(UpdatedActorUseCase $updatedActorUseCase)
